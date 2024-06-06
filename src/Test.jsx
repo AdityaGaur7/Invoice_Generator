@@ -13,12 +13,39 @@ const App = () => {
     setInvoiceData(data);
   };
 
+  // const generatePDF = () => {
+  //   const input = document.getElementById('invoice');
+  //   html2canvas(input).then((canvas) => {
+  //     const imgData = canvas.toDataURL('image/png');
+  //     const pdf = new jsPDF();
+  //     pdf.addImage(imgData, 'PNG', 0, 0);
+  //     pdf.save('invoice.pdf');
+  //   });
+  // };
   const generatePDF = () => {
     const input = document.getElementById('invoice');
     html2canvas(input).then((canvas) => {
       const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF();
-      pdf.addImage(imgData, 'PNG', 0, 0);
+  
+      
+      const imgWidth = 210; // A4 width in mm
+      const pageHeight = 295; // A4 height in mm
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      const heightLeft = imgHeight;
+  
+      const pdf = new jsPDF('p', 'mm', 'a4');
+      let position = 0;
+  
+      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+      position = heightLeft - pageHeight;
+  
+      
+      while (position >= 0) {
+        pdf.addPage();
+        pdf.addImage(imgData, 'PNG', 0, position - imgHeight, imgWidth, imgHeight);
+        position -= pageHeight;
+      }
+  
       pdf.save('invoice.pdf');
     });
   };
