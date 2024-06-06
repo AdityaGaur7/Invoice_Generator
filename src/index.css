@@ -1,0 +1,55 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+.invoice-container {
+  padding: 20px;
+  border: 1px solid #ddd;
+  max-width: 800px;
+  margin: auto;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.logo {
+  width: 100px;
+  margin-right: 20px;
+}
+
+.header-text {
+  text-align: left;
+}
+
+.details, .order-details, .invoice-details {
+  margin-bottom: 20px;
+}
+
+.items {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.items th, .items td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.total-amount {
+  font-weight: bold;
+}
+
+.signature {
+  text-align: right;
+}
+
+.signature-img {
+  width: 100px;
+  display: block;
+  margin: 10px 0;
+}
